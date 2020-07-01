@@ -593,3 +593,4 @@ InitTestScene*.unity
 
 # exclude everything
 ProjectBoost/Library/*
+ProjectBoost/Temp/*
