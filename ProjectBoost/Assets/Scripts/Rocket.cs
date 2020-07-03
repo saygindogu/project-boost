@@ -17,6 +17,7 @@ public class Rocket : MonoBehaviour
     [SerializeField] ParticleSystem mainEngineParticles;
     [SerializeField] ParticleSystem bigBoomParticles;
     [SerializeField] ParticleSystem winWinParticles;
+    [SerializeField] bool collusionsDisabled = true;
     Rigidbody rigidBody;
     AudioSource audioSource;
 
@@ -41,13 +42,14 @@ public class Rocket : MonoBehaviour
             RespondToThrustInput();
             RespondToRotateInput();
         }
+        if( Debug.isDebugBuild ){
+            RespondToDebugInput();
+        }
         
     }
 
     void OnCollisionEnter(Collision collision){
-        if(state != State.Alive){
-            return;
-        }
+        if(state != State.Alive || collusionsDisabled){ return; }
         audioSource.Stop();
         
         switch(collision.gameObject.tag){
@@ -78,8 +80,25 @@ public class Rocket : MonoBehaviour
         SceneManager.LoadScene(++scene);
     }
 
+    private void LoadPrevScene(){
+        winWinParticles.Stop();
+        SceneManager.LoadScene(--scene);
+    }
+
     private void Thrust(){
         rigidBody.AddRelativeForce(Vector3.up * mainThrust * Time.deltaTime);
+    }
+
+    private void RespondToDebugInput(){
+        if(Input.GetKeyDown(KeyCode.L)){
+            LoadNextScene();
+        }
+        if( Input.GetKeyDown(KeyCode.K)){
+            LoadPrevScene();
+        }
+        if( Input.GetKeyDown(KeyCode.C)){
+            collusionsDisabled = !collusionsDisabled;
+        }
     }
 
     private void RespondToThrustInput(){

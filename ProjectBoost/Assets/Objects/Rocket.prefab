@@ -440,13 +440,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rcsThrust: 50
-  mainThrust: 1000
+  mainThrust: 10000
   mainEngine: {fileID: 8300000, guid: 20e4afa46e8004efc8bf098886681f14, type: 3}
   bigBoom: {fileID: 8300000, guid: 4da963946af7544b790f40aaab3237b8, type: 3}
   winWin: {fileID: 8300000, guid: 9efd8b1d9fda0420a8aeaf8da3922e64, type: 3}
   mainEngineParticles: {fileID: 198100718874929751}
   bigBoomParticles: {fileID: 198204747119594368}
   winWinParticles: {fileID: 198631065544503957}
+  collusionsDisabled: 1
 --- !u!82 &1110052205
 AudioSource:
   m_ObjectHideFlags: 0
