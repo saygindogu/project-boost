@@ -79,7 +79,7 @@ public class Rocket : MonoBehaviour
     }
 
     private void Thrust(){
-        rigidBody.AddRelativeForce(Vector3.up * mainThrust);
+        rigidBody.AddRelativeForce(Vector3.up * mainThrust * Time.deltaTime);
     }
 
     private void RespondToThrustInput(){
